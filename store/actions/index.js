@@ -1,0 +1,3 @@
+export {
+    fetchAllArticles
+ } from './nytArticles'; 
