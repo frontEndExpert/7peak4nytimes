@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Router from 'next/router'
+// import Router from 'next/router'
 import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../store/actions/index';
-import Spinner from './spinner/spinner';
+// import Spinner from './spinner/spinner';
 import axios from '../shared/axios';
-import Moment from 'moment';
+//import Moment from 'moment';
 import DetailPage from './detailPage'
 import DisplayArticles from './displayArticles'
 
@@ -23,9 +23,8 @@ class NytArticles extends Component {
     articleSearch(event){
         event.preventDefault();
         event.persist();
-
         this.props.modifySearch( this.state.page, this.state.sort, event.target.value)
-
+       
         this.setState({
             q:  event.target.value
             });
@@ -52,10 +51,11 @@ class NytArticles extends Component {
     }
  
 render(){
-
-    
-
-    return (
+    let page = () => {
+    if(this.props.showDetail===true){
+        return <DetailPage />
+    }else{
+        return (
         <div className="articles">
             <input type="text" id="searchQuery" name="q" 
             onChange={(e) => this.articleSearch(e)} 
@@ -77,6 +77,7 @@ render(){
 
             <button name="prev" onClick={() => this.PrevArticles()} 
             className="nav-btn">Previous 10 Articles</button>
+            <span className="page-no">Page <br/>{this.state.page}</span>
             <button name="next" onClick={() => this.NextArticles()} 
             className="nav-btn right">Next 10 articles</button>
             <style jsx global >{`
@@ -134,7 +135,7 @@ render(){
                     float: right;
                 }
                 .articles > button.right{
-                    margin-left:30px;
+                    margin-left:5px;
                 }
                 #searchQuery{
                     margin: 6px;
@@ -148,9 +149,19 @@ render(){
                 .articles > .radioBtn > input.orderby{
                     margin: 3px 10px;
                 }
+                .page-no{
+                    text-align: center;
+                    margin-left:5px;
+                }
 
             `}</style>
         </div>
+        )
+
+    }
+    }
+    return (
+        page()
     )
 }
 
@@ -161,7 +172,8 @@ const mapStateToProps = state => {
     return {
         allArticles: state.nytReducer.allArticles,
         currentUrl: state.nytReducer.currentUrl,
-        searchObj: state.nytReducer.searchObj
+        searchObj: state.nytReducer.searchObj,
+        showDetail: state.nytReducer.showDetail
     }
 }
 
@@ -169,7 +181,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchAllArticles: (p) =>  dispatch( actions.fetchAllArticles(p) ),
         modifySearch: (p,s,q) => dispatch (actions.modifySearch(p,s,q) ),
-
+        openDisplay: () =>  dispatch( actions.openDisplay() ),
+        closeDisplay: () =>  dispatch( actions.closeDisplay() )
     }
 }
 

@@ -2,5 +2,7 @@ export {
     fetchAllArticles,
     setUrl,
     modifySearch,
-    setCurrentArticle
+    setCurrentArticle,
+    openDisplay,
+    closeDisplay
  } from './nytArticles'; 

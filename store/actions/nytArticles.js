@@ -1,15 +1,9 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../shared/axios';
-import Router from 'next/router';
-
 
 
 export const fetchAllArticles = (p,s,q) => 
-async dispatch => {
-   // console.log('action sort',s);
-    // axios.defaults.headers.post['Content-Type']  = 'application/json;charset=utf-8';
-    // axios.defaults.headers.post['crossDomain'] = true;
-    //searchObj.q
+ dispatch => {
     let aParams = {};
     if(q.length>0){
          aParams = {
@@ -26,7 +20,7 @@ async dispatch => {
         }
     }
     console.log('aParams',aParams);
-    await axios.get('/articlesearch.json', {
+     axios.get('/articlesearch.json', {
         headers: { 'content-type': 'application-x-www-form-urlencoded'},
         dataType: 'jsonp',
         params: { ...aParams }
@@ -55,9 +49,9 @@ export const setUrl = (url) => {
     };
 };
 
-export const modifySearch = (page,sort,q) => {
 
-     return  {
+export const modifySearch = (page,sort,q) => {
+     return {
         type: actionTypes.MODIFY_SEARCH,
         searchObj: { 
             page: page,
@@ -65,7 +59,6 @@ export const modifySearch = (page,sort,q) => {
             q: q
         }
     };
-
 };
 
 export const setCurrentArticle = (article) => {
@@ -74,4 +67,19 @@ export const setCurrentArticle = (article) => {
         type: actionTypes.SET_CURRENT_ARTICLE,
         currentArticle: article
     };
+};
+
+export const openDisplay = () => {
+    
+     return {
+        type: actionTypes.OPEN_DISPLAY,
+        showDetail: true
+    };
+};
+
+export const closeDisplay = () => {
+    return {
+       type: actionTypes.CLOSE_DISPLAY,
+       showDetail: false
+   };
 };

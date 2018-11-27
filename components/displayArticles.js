@@ -81,7 +81,8 @@ class DisplayArticles extends PureComponent {
             article => article._id === id )[0];
             console.log('currentArticle=', currentArticle);   
         this.props.onSetCurrentArticle({...currentArticle});
-        Router.push({ pathname: '/articleShow' });
+        this.props.openDisplay();
+        //Router.push({ pathname: '/articleShow' });
     }
 
       render(){
@@ -150,7 +151,8 @@ const mapStateToProps = state => {
     return {
         allArticles: state.nytReducer.allArticles,
         currentArticle: state.nytReducer.currentArticle,
-        searchObj: state.nytReducer.searchObj
+        searchObj: state.nytReducer.searchObj,
+        showDetail: state.nytReducer.showDetail
     }
 }
 
@@ -158,6 +160,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchAllArticles: (p,s,q) =>  dispatch( actions.fetchAllArticles(p,s,q) ),
         onSetCurrentArticle: (article) => dispatch (actions.setCurrentArticle(article) ),
+        openDisplay: () =>  dispatch( actions.openDisplay() ),
+        closeDisplay: () =>  dispatch( actions.closeDisplay() ),
     }
 }
 

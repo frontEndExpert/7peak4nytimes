@@ -35,9 +35,13 @@ class DetailPage extends Component {
      }
 
      handleClick(event){
-        event.preventDefault();
-        event.persist();
-        Router.back();
+        // event.preventDefault();
+        // event.persist();
+        // const href = "/";
+        // const as = href;
+        // Router.push(href, as, { shallow: true });
+        // Router.back( { shallow: true });
+        this.props.closeDisplay();
      }
 
 
@@ -56,7 +60,6 @@ class DetailPage extends Component {
                 <div className="detail-page">
                     <div id="backButton" key={'goBack'} className="back-button"  
                             onClick={(event) => this.handleClick(event)  }>
-                            <br/>
                             <span>Back</span>
                     </div>
                     <p>{this.props.currentArticle.headline.main}</p>
@@ -82,6 +85,7 @@ class DetailPage extends Component {
                                 background-color: #cccccc;
                                 text-align: center;
                                 cursor: pointer;
+                                padding: 7px;
                         }
                         .back-button:hover, .back-button:focus{
                             background-color: #eeeeee;
@@ -112,13 +116,16 @@ const mapStateToProps = state => {
     return {
         allArticles: state.nytReducer.allArticles,
         currentUrl: state.nytReducer.currentUrl,
-        currentArticle: state.nytReducer.currentArticle
+        currentArticle: state.nytReducer.currentArticle,
+        showDetail: state.nytReducer.showDetail
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchAllArticles: () =>  dispatch( actions.fetchAllArticles() ),
+        openDisplay: () =>  dispatch( actions.openDisplay() ),
+        closeDisplay: () =>  dispatch( actions.closeDisplay() ),
     }
 }
 
