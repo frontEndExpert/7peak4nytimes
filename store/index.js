@@ -7,7 +7,14 @@ import rootReducer from './reducers';
 
 const exampleInitialState = {
     nytReducer: {
-        allArticles: []
+        allArticles: [],
+        currentUrl: 'defaultUrl',
+        currentArticle: {},
+        searchObj: { 
+            page: 1,
+            sort: 'newest',
+            q: ''
+        }
     }
 };
 

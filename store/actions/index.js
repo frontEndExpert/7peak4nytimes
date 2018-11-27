@@ -1,3 +1,6 @@
 export {
-    fetchAllArticles
+    fetchAllArticles,
+    setUrl,
+    modifySearch,
+    setCurrentArticle
  } from './nytArticles'; 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 const nytInstance = axios.create({
-    baseURL: 'https://api.nytimes.com/svc/search/v2'
+    baseURL: 'https://api.nytimes.com/svc/search/v2',
+    
 });
 
 export default nytInstance;
@@ -9,3 +10,5 @@ export default nytInstance;
 //         url += '?' + $.param({
 //         'api-key': "e7007bb0c5e54f50b808a71a1494f2a8"
 //         });
+// timeout: 3600,
+//     headers: {'Access-Control-Allow-Origin': '*'}

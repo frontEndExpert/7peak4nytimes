@@ -9,23 +9,13 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={reduxStore}>
-        <div className="App">
-          <Component {...pageProps} />
-          <style jsx global>
-          {`
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-body {
-  margin: 0;
-  color: #1b1a20;
-  font-family: 'Roboto', sans-serif; }
-          
-`}
-</style>
-</div>
-</Provider>
-</Container>
-);
-};
+          <div className="App">
+            <Component {...pageProps} />
+          </div>
+        </Provider>
+      </Container>
+    );
+  };
 };
 
 export default withReduxStore(MyApp);
