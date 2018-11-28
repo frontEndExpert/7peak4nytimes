@@ -23,9 +23,10 @@ class NytArticles extends Component {
     articleSearch(event){
         event.preventDefault();
         event.persist();
-        this.props.modifySearch( this.state.page, this.state.sort, event.target.value)
+        this.props.modifySearch( 1, this.state.sort, event.target.value)
        
         this.setState({
+            page: 1,
             q:  event.target.value
             });
     }

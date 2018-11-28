@@ -74,7 +74,7 @@ class DetailPage extends Component {
                     .detail-page{
                         width: 100%;
                         margin: 0px;
-                        padding: 10px;
+                        padding: 20px;
 
                     }
                         .back-button{
@@ -86,23 +86,38 @@ class DetailPage extends Component {
                                 text-align: center;
                                 cursor: pointer;
                                 padding: 7px;
+                                margin: 10px 0px 20px 0px;
                         }
                         .back-button:hover, .back-button:focus{
                             background-color: #eeeeee;
                         }
                         .multimedia{
                             display: flex;
-                            width: 80%;
-                            justify-content: flex-start;
+                            width: 100%;
+                            justify-content: center;
                             flex-wrap: wrap;
                         }
-                        .multimedia > .multi-image{
-                            width: 600px;
+                        .multimedia > .multi-image{ 
+                            width: 80%;
+                            max-width: 600px;
                             height: auto;
                             margin: 5px;
                         }
                         .remark{
                             font-size: 10px;
+                        }
+                        @media (max-width: 620px){
+                            .multimedia{
+                                display: flex;
+                                width: 100%;
+                                justify-content: center;
+                                flex-wrap: wrap;
+                            }
+                            .multimedia > .multi-image{ 
+                                width: 90%;
+                                height: auto;
+                                margin: 5px;
+                            }
                         }
                      `}</style>
                 </div>
